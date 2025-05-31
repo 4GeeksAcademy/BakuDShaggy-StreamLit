@@ -11,7 +11,20 @@ st.markdown("""Predict whether a passenger would have survived the Titanic disas
 """)
 @st.cache_resource
 def load_model():
-    model_path = os.path.abspath('../models/titanic_rf_model.joblib')
+    # Get current directory of this script
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # Go up one level to project root
+    project_root = os.path.abspath(os.path.join(current_dir, '..'))
+    
+    # Construct model path
+    model_path = os.path.join(project_root, 'models', 'titanic_rf_model.joblib')
+    
+    # Debug info (shows in Render logs)
+    print(f"Current directory: {current_dir}")
+    print(f"Project root: {project_root}")
+    print(f"Model path: {model_path}")
+    
     return joblib.load(model_path)
 
 model = load_model()
