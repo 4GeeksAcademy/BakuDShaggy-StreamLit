@@ -55,11 +55,11 @@ if submit_button:
 
     if prediction == 1:
         st.success(f"✅ SURVIVED (Probability: {probability:.2%})")
-        st.image("https://i.imgur.com/6QebjX3.jpgg", 
+        st.image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTynehhnlP5p4O3SA-79V0xU4RchK7RIndzlA&s", 
              width=400)
     else:
         st.error(f"❌ DID NOT SURVIVE (Probability: {probability:.2%})")
-        st.image("https://i.imgur.com/3JmBQ4W.jpg",
+        st.image("https://files.idyllic.app/files/static/2585224?width=256&optimizer=image",
              width=400)
 
 
