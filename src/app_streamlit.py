@@ -11,21 +11,7 @@ st.markdown("""Predict whether a passenger would have survived the Titanic disas
 """)
 @st.cache_resource
 def load_model():
-    # Get current directory of this script
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    
-    # Go up one level to project root
-    project_root = os.path.abspath(os.path.join(current_dir, '..'))
-    
-    # Construct model path
-    model_path = os.path.join(project_root, 'models', 'titanic_rf_model.joblib')
-    
-    # Debug info (shows in Render logs)
-    print(f"Current directory: {current_dir}")
-    print(f"Project root: {project_root}")
-    print(f"Model path: {model_path}")
-    
-    return joblib.load(model_path)
+    return joblib.load('titanic_rf_model.joblib')
 
 model = load_model()
 with st.form("passenger_form"):
@@ -56,16 +42,18 @@ with st.form("passenger_form"):
 
 if submit_button:
     sex_num = 0 if sex == "Male" else 1
-    pclass_num = int(re.search(r'\((\d+)\)', pclass).group(1))
+    pclass_num = int(pclass.split('(')[1].split(')')[0])
     features = pd.DataFrame([[pclass_num, sex_num, age, sibsp, parch, fare]],
                            columns=['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare'])
     prediction = model.predict(features)[0]
     probability = model.predict_proba(features)[0][prediction]
 
     if prediction == 1:
+        st.success(f"✅ SURVIVED (Probability: {probability:.2%})")
         st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/800px-RMS_Titanic_3.jpg", 
              width=400)
     else:
+        st.error(f"❌ DID NOT SURVIVE (Probability: {probability:.2%})")
         st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Titanic_plans_1911.jpg/800px-Titanic_plans_1911.jpg",
              width=400)
 
