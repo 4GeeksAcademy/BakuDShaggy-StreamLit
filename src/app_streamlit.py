@@ -75,4 +75,10 @@ st.info("""
 
 st.markdown("---")
 st.caption("Built with Streamlit | MOdel: Random Forest | Data: List of passenger of the Titanic ")
-        
+
+
+st.markdown("---")
+st.subheader("Project Repository")
+st.markdown("""
+**GitHub Repository**: [BakuDShaggy-StreamLit](https://github.com/4GeeksAcademy/BakuDShaggy-StreamLit)  
+""")
