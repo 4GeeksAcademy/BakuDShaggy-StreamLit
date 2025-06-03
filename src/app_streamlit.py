@@ -55,11 +55,11 @@ if submit_button:
 
     if prediction == 1:
         st.success(f"✅ SURVIVED (Probability: {probability:.2%})")
-        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/800px-RMS_Titanic_3.jpg", 
+        st.image("https://i.imgur.com/6QebjX3.jpgg", 
              width=400)
     else:
         st.error(f"❌ DID NOT SURVIVE (Probability: {probability:.2%})")
-        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Titanic_plans_1911.jpg/800px-Titanic_plans_1911.jpg",
+        st.image("https://i.imgur.com/3JmBQ4W.jpg",
              width=400)
 
 
