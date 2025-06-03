@@ -11,7 +11,12 @@ st.markdown("""Predict whether a passenger would have survived the Titanic disas
 """)
 @st.cache_resource
 def load_model():
-    return joblib.load('../models/titanic_rf_model.joblib')
+    # I am getting an error here so i will try to use the  Render path first
+    try:
+        return joblib.load('/opt/render/project/src/models/titanic_rf_model.joblib')
+    except:
+        # Fallback to local path
+        return joblib.load('../models/titanic_rf_model.joblib')
 
 model = load_model()
 with st.form("passenger_form"):
